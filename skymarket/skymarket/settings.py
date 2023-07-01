@@ -36,6 +36,7 @@ ALLOWED_HOSTS = ["*"]
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
+    "djoser",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
@@ -84,6 +85,9 @@ WSGI_APPLICATION = "skymarket.wsgi.application"
 # TODO здесь мы настраиваем аутентификацию и пагинацию
 REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ),
 }
 SPECTACULAR_SETTINGS = {
     "TITLE": "skymarket API",
@@ -92,6 +96,10 @@ SPECTACULAR_SETTINGS = {
 
 # TODO здесь мы настраиваем Djoser
 DJOSER = {
+    'SERIALIZERS': {
+        'user_create': 'users.serializers.UserRegistrationSerializer'
+    },
+    'LOGIN_FIELD': 'email'
 }
 
 # Database

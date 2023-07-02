@@ -16,7 +16,7 @@ class User(AbstractBaseUser):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     phone = models.CharField(max_length=20)
-    email = models.EmailField()
+    email = models.EmailField(unique=True)
     role = models.CharField(max_length=5, choices=UserRoles.choices, default=UserRoles.USER)
     image = models.ImageField(upload_to='logos/')
 
@@ -48,3 +48,11 @@ class User(AbstractBaseUser):
     @property
     def is_user(self):
         return self.role == UserRoles.USER
+
+
+    class Meta:
+        verbose_name = 'Пользователь'
+        verbose_name_plural = 'Пользователи'
+
+    def __str__(self):
+        return self.name

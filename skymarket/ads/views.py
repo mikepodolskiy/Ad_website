@@ -1,9 +1,11 @@
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import pagination, viewsets
 from rest_framework.decorators import action
+from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
 
 from ads.filters import AdFilter
 from ads.models import Ad, Comment
+from ads.permissions import IsAuthor
 from ads.serializers import AdSerializer, AdDetailSerializer, CommentSerializer
 
 
@@ -31,8 +33,26 @@ class AdViewSet(viewsets.ModelViewSet):
             return Ad.objects.filter(author=self.request.user).all()
         return Ad.objects.all()
 
+    def get_permissions(self):
+        if self.action in ["create", "retrieve"]:
+            self.permission_classes = [IsAuthenticated]
+        elif self.action in ["update", "partial_update", "destroy"]:
+            self.permission_classes = [IsAuthor, IsAdminUser]
+        else:
+            self.permission_classes = [AllowAny]
+        super().get_permissions()
+
 
 class CommentViewSet(viewsets.ModelViewSet):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
     pagination_class = AdPagination
+
+    def get_permissions(self):
+        if self.action in ["create", "retrieve"]:
+            self.permission_classes = [IsAuthenticated]
+        elif self.action in ["update", "partial_update", "destroy"]:
+            self.permission_classes = [IsAuthor, IsAdminUser]
+        else:
+            self.permission_classes = [AllowAny]
+        super().get_permissions()

@@ -131,6 +131,4 @@ dmypy.json
 .idea/
 ./django_static
 
-
-
 .env.example

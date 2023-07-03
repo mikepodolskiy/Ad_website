@@ -18,7 +18,8 @@ class User(AbstractBaseUser):
     phone = models.CharField(max_length=20)
     email = models.EmailField(unique=True)
     role = models.CharField(max_length=5, choices=UserRoles.choices, default=UserRoles.USER)
-    image = models.ImageField(upload_to='logos/')
+    image = models.ImageField(null=True, upload_to='logos/')
+    is_active = models.BooleanField(default=True)
 
     # TODO переопределение пользователя.
     # TODO подробности также можно поискать в рекоммендациях к проекту

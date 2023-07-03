@@ -40,7 +40,8 @@ class AdViewSet(viewsets.ModelViewSet):
             self.permission_classes = [IsAuthor, IsAdminUser]
         else:
             self.permission_classes = [AllowAny]
-        super().get_permissions()
+        return super().get_permissions()
+
 
 
 class CommentViewSet(viewsets.ModelViewSet):
@@ -55,4 +56,5 @@ class CommentViewSet(viewsets.ModelViewSet):
             self.permission_classes = [IsAuthor, IsAdminUser]
         else:
             self.permission_classes = [AllowAny]
+
         super().get_permissions()

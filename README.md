@@ -8,7 +8,6 @@ Backend for classified advertisement web-site using Django, DRF, Postgres, with 
 - Django
 - Postgres
 - DRF
-- PyTest
 
 ## Functionality:
 
@@ -20,6 +19,3 @@ Backend for classified advertisement web-site using Django, DRF, Postgres, with 
 
 ## Documentation
 Documentation is available on `/api/docs` after server is launched
-
-## Testing
-For testing simply use `pytest` command in terminal

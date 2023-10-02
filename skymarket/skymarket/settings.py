@@ -94,7 +94,6 @@ SPECTACULAR_SETTINGS = {
     "DESCRIPTION": "ads API",
 }
 
-
 DJOSER = {
     'SERIALIZERS': {
         'user_create': 'users.serializers.UserRegistrationSerializer'

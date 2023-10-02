@@ -3,8 +3,6 @@ from django.db import models
 from django.db.models import TextChoices
 
 from users.managers import UserManager
-from phonenumber_field.modelfields import PhoneNumberField
-from django.utils.translation import gettext_lazy as _
 
 
 class UserRoles(TextChoices):
@@ -20,9 +18,6 @@ class User(AbstractBaseUser):
     role = models.CharField(max_length=5, choices=UserRoles.choices, default=UserRoles.USER)
     image = models.ImageField(null=True, upload_to='logos/')
     is_active = models.BooleanField(default=True)
-
-    # TODO переопределение пользователя.
-    # TODO подробности также можно поискать в рекоммендациях к проекту
 
     @property
     def is_superuser(self):
@@ -50,10 +45,9 @@ class User(AbstractBaseUser):
     def is_user(self):
         return self.role == UserRoles.USER
 
-
     class Meta:
         verbose_name = 'Пользователь'
         verbose_name_plural = 'Пользователи'
 
     def __str__(self):
-        return self.name
+        return self.email

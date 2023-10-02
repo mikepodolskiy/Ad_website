@@ -4,12 +4,9 @@ from django.conf import settings
 from django.conf.urls.static import static
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView
 
-import ads
 import users
 from ads.urls import ads_router
 from users.urls import users_router
-
-# TODO здесь необходимо подключить нужные нам urls к проекту
 
 urlpatterns = [
     path("api/admin/", admin.site.urls),

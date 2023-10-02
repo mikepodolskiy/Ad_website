@@ -43,7 +43,6 @@ class AdViewSet(viewsets.ModelViewSet):
         return super().get_permissions()
 
 
-
 class CommentViewSet(viewsets.ModelViewSet):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
